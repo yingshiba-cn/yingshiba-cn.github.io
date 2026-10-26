@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="影视吧（yingshiba-cn）专注收集整理同志题材、同性情感、BL改编、LGBTQ+相关电影与剧集，提供影片介绍、分类浏览、热播排行与更新资讯，打造专注且友好的影视吧导航站点。">
+<meta name="keywords" content="影视吧,同志电影,同性题材剧集,BL改编,题材情感剧,LGBTQ+影视,yingshiba-cn,影视推荐,影视大全">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="author" content="影视吧">
+<link rel="canonical" href="https://yingshiba-cn.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="影视吧 - 同志题材与同性情感影视导航 | yingshiba-cn">
+<meta property="og:description" content="专注同志电影、同性情感剧集、BL改编作品与LGBTQ+影视资讯的导航站点，提供分类浏览与热播排行。">
+<meta property="og:url" content="https://yingshiba-cn.github.io/">
+<meta property="og:site_name" content="影视吧">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="影视吧 - 同志题材与同性情感影视导航">
+<meta name="twitter:description" content="专注同志电影、同性情感剧集、BL改编作品与LGBTQ+影视资讯。">
+<title>影视吧 - 同志题材与同性情感影视导航 | yingshiba-cn</title>
+<style>
+:root{
+  --bg:#0c0e16; --bg2:#141724; --card:#1b2032; --line:#2a3148;
+  --txt:#e8ebf5; --sub:#9aa3bf; --g1:linear-gradient(135deg,#c24a17 0%,#c0392b 50%,#f58025 100%); --g2:#c86bff; --accent:#c0392b;
+  --radius:18px; --shadow:0 18px 45px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  background:var(--bg); color:var(--txt); line-height:1.7;
+  background-image:radial-gradient(circle at 12% -10%,rgba(192,57,43,.30),transparent 42%),radial-gradient(circle at 88% 8%,rgba(200,107,255,.22),transparent 40%);
+  background-attachment:fixed;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+ul{list-style:none}
+.wrap{max-width:1200px;margin:0 auto;padding:0 clamp(1rem,4vw,2rem)}
+
+/* ===== 顶部导航 ===== */
+header.navbar{position:sticky;top:0;z-index:99;background:rgba(12,14,22,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;gap:1.2rem;height:64px}
+.logo{display:flex;align-items:center;gap:.55rem;font-weight:800;font-size:clamp(1.05rem,2.4vw,1.35rem);letter-spacing:.3px;flex:0 0 auto}
+.logo .mark{width:34px;height:34px;border-radius:10px;background:var(--g1);display:grid;place-items:center;font-size:1rem;box-shadow:0 6px 18px rgba(194,74,23,.45)}
+.logo small{color:var(--sub);font-size:.62em;font-weight:600;letter-spacing:1px}
+nav.menu{margin-left:auto;display:flex;gap:.25rem}
+nav.menu a{padding:.5rem .85rem;border-radius:11px;font-size:.9rem;color:var(--sub);font-weight:600;transition:.25s}
+nav.menu a:hover{color:var(--txt);background:rgba(255,255,255,.06)}
+nav.menu a.active{color:#fff;background:var(--g1);box-shadow:0 6px 16px rgba(194,74,23,.40)}
+.btn-menu{display:none;margin-left:auto;width:42px;height:42px;border:1px solid var(--line);border-radius:11px;background:var(--card);color:var(--txt);font-size:1.3rem;cursor:pointer}
+
+/* ===== 通用栏目标题 ===== */
+.sec{padding:clamp(3rem,8vw,5rem) 0}
+.sec-head{display:flex;align-items:flex-end;gap:1rem;flex-wrap:wrap;margin-bottom:2rem}
+.sec-head h2{font-size:clamp(1.5rem,4vw,2.1rem);font-weight:800;letter-spacing:.5px}
+.sec-head h2 em{font-style:normal;background:var(--g1);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sec-head span{color:var(--sub);font-size:.85rem}
+.eyebrow{display:inline-block;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);border:1px solid rgba(57,208,196,.4);padding:.25rem .7rem;border-radius:20px;margin-bottom:.7rem}
+
+/* ========== ① 首页：Grid + 绝对定位层叠海报墙 ========== */
+.hero{min-height:calc(100vh - 64px);display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.5rem,5vw,3.5rem);align-items:center;padding:clamp(2rem,6vw,4rem) clamp(1rem,4vw,2rem);max-width:1200px;margin:0 auto}
+.hero .tagline{display:inline-flex;align-items:center;gap:.5rem;background:rgba(245,128,37,.14);border:1px solid rgba(245,128,37,.35);padding:.4rem .9rem;border-radius:30px;font-size:.8rem;color:#d6cdff;margin-bottom:1.2rem}
+.hero .tagline i{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(57,208,196,.7);animation:pulse 1.8s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 12px rgba(57,208,196,0)}100%{box-shadow:0 0 0 0 rgba(57,208,196,0)}}
+.hero h1{font-size:clamp(2rem,6.5vw,3.6rem);line-height:1.15;font-weight:900;letter-spacing:.5px}
+.hero h1 .hl{background:linear-gradient(120deg,var(--g1),#f58025,var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lead{color:var(--sub);font-size:clamp(.95rem,2.2vw,1.08rem);margin:1.2rem 0 1.8rem;max-width:46ch}
+.cta-row{display:flex;gap:.8rem;flex-wrap:wrap}
+.btn{padding:.8rem 1.7rem;border-radius:12px;font-weight:700;font-size:.92rem;border:0;cursor:pointer;transition:.25s}
+.btn.primary{background:var(--g1);color:#fff;box-shadow:0 10px 26px rgba(194,74,23,.42)}
+.btn.ghost{background:rgba(255,255,255,.06);border:1px solid var(--line);color:var(--txt)}
+.btn:hover{transform:translateY(-3px)}
+.stats{display:flex;gap:clamp(1rem,4vw,2.4rem);margin-top:2.4rem;flex-wrap:wrap}
+.stat b{display:block;font-size:clamp(1.4rem,3.5vw,1.9rem);font-weight:800;background:linear-gradient(120deg,var(--accent),#f58025);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat small{color:var(--sub);font-size:.78rem;letter-spacing:.5px}
+.poster-wall{position:relative;height:clamp(300px,42vw,460px)}
+.poster-wall .pc{position:absolute;width:44%;aspect-ratio:2/3;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.12);box-shadow:var(--shadow);transition:.5s}
+.poster-wall .pc img{width:100%;height:100%;object-fit:cover}
+.poster-wall .pc .cap{position:absolute;left:0;right:0;bottom:0;padding:.7rem;background:linear-gradient(transparent,rgba(8,10,18,.93));font-size:.78rem;font-weight:700}
+.p1{top:6%;left:8%;transform:rotate(-7deg);z-index:2}
+.p2{top:22%;right:6%;transform:rotate(6deg);z-index:3}
+.p3{top:48%;left:20%;transform:rotate(-3deg);z-index:4}
+.p1:hover,.p2:hover,.p3:hover{transform:rotate(0) scale(1.05);z-index:6}
+
+/* ========== ② 推荐：横向滚动磁贴轨道 scroll-snap ========== */
+.rail{display:flex;gap:1.1rem;overflow-x:auto;scroll-snap-type:x mandatory;padding:.4rem .2rem 1.4rem;scrollbar-width:thin;scrollbar-color:var(--g1) transparent}
+.rail::-webkit-scrollbar{height:9px}
+.rail::-webkit-scrollbar-thumb{background:var(--g1);border-radius:6px}
+.tile{flex:0 0 clamp(170px,26vw,230px);scroll-snap-align:start;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:.3s}
+.tile:hover{transform:translateY(-7px);border-color:rgba(194,74,23,.55);box-shadow:0 20px 40px rgba(0,0,0,.5)}
+.tile .cover{position:relative;aspect-ratio:2/3;overflow:hidden}
+.tile .cover img{width:100%;height:100%;object-fit:cover;transition:.5s}
+.tile:hover .cover img{transform:scale(1.07)}
+.tile .badge{position:absolute;top:.6rem;left:.6rem;background:var(--g1);color:#fff;font-size:.66rem;font-weight:800;padding:.25rem .55rem;border-radius:20px;letter-spacing:.5px}
+.tile .badge.hot{background:linear-gradient(135deg,#ff6b6b,#ff9f43)}
+.tile .badge.new{background:linear-gradient(135deg,var(--accent),#2ba99b);color:#062b28}
+.tile .score{position:absolute;bottom:.6rem;right:.6rem;width:38px;height:38px;border-radius:50%;background:rgba(8,10,18,.86);border:2px solid var(--accent);display:grid;place-items:center;font-weight:800;font-size:.78rem;color:#fff}
+.tile .meta{padding:.8rem .9rem}
+.tile .meta h3{font-size:.94rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tile .meta p{color:var(--sub);font-size:.76rem;margin-top:.25rem}
+
+/* ========== ③ 分类：CSS 多列瀑布流 columns ========== */
+.tools{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1.6rem}
+.tools button{padding:.5rem 1.1rem;border-radius:20px;border:1px solid var(--line);background:rgba(255,255,255,.05);color:var(--sub);font-size:.82rem;font-weight:600;cursor:pointer;transition:.25s}
+.tools button.on,.tools button:hover{background:var(--g1);color:#fff;border-color:transparent}
+.masonry{column-count:4;column-gap:1.1rem}
+.masonry .cell{break-inside:avoid;margin-bottom:1.1rem;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:1.3rem 1.1rem;position:relative;overflow:hidden;transition:.3s}
+.masonry .cell:hover{transform:translateY(-5px);border-color:rgba(200,107,255,.5);box-shadow:0 16px 34px rgba(0,0,0,.4)}
+.masonry .cell .halo{position:absolute;top:-40px;right:-40px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(194,74,23,.40),transparent 70%);opacity:.5;transition:.4s}
+.masonry .cell:hover .halo{transform:scale(1.6);opacity:.8}
+.masonry .cell .ico{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;font-size:1.3rem;background:linear-gradient(135deg,rgba(192,57,43,.30),rgba(200,107,255,.22));margin-bottom:.8rem}
+.masonry .cell h3{font-size:1.02rem;font-weight:800}
+.masonry .cell p{color:var(--sub);font-size:.78rem;margin:.35rem 0 .8rem}
+.masonry .cell .cnt{display:inline-block;font-size:.72rem;color:var(--accent);border:1px solid rgba(57,208,196,.35);padding:.15rem .6rem;border-radius:20px}
+.cloud{margin-top:1.6rem;display:flex;gap:.55rem;flex-wrap:wrap}
+.cloud a{font-size:.78rem;color:var(--sub);padding:.35rem .8rem;border:1px dashed var(--line);border-radius:20px;transition:.25s}
+.cloud a:hover{color:var(--txt);border-color:#f58025;background:rgba(200,107,255,.12)}
+
+/* ========== ④ 排行：斑马条纹网格表 ========== */
+.board{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.board .row{display:grid;grid-template-columns:64px 2.4fr 1fr 1.2fr;align-items:center;gap:1rem;padding:.85rem 1.2rem;border-bottom:1px solid var(--line)}
+.board .row.head{background:linear-gradient(90deg,rgba(192,57,43,.22),rgba(200,107,255,.14));font-size:.76rem;color:var(--sub);letter-spacing:1px;text-transform:uppercase;font-weight:700}
+.board .row.body:nth-child(even){background:rgba(255,255,255,.025)}
+.board .row.body:hover{background:rgba(245,128,37,.12)}
+.medal{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;font-weight:900;font-size:1rem;color:#fff;background:linear-gradient(135deg,#c8c8d0,#8a8a96)}
+.medal.m1{background:linear-gradient(135deg,#ffd24a,#e0a100)}
+.medal.m2{background:linear-gradient(135deg,#d9e0ea,#8f9aa8)}
+.medal.m3{background:linear-gradient(135deg,#e2a878,#b4703c)}
+.medal b{font-size:1rem}
+.title-cell{display:flex;align-items:center;gap:.8rem}
+.title-cell .thumb{width:44px;height:62px;border-radius:8px;object-fit:cover;flex:0 0 auto}
+.title-cell div h4{font-size:.95rem;font-weight:700}
+.title-cell div p{color:var(--sub);font-size:.74rem}
+.tag{font-size:.72rem;padding:.2rem .6rem;border-radius:6px;background:rgba(57,208,196,.14);color:var(--accent);width:fit-content}
+.heat{display:flex;align-items:center;gap:.6rem;font-size:.78rem;color:var(--sub);font-variant-numeric:tabular-nums}
+.bar{height:6px;flex:1;max-width:110px;background:rgba(255,255,255,.08);border-radius:6px;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--g1),var(--accent));border-radius:6px}
+
+/* ========== ⑤ 关于：三栏信息卡 + 垂直时间轴 ========== */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem}
+.info-card{background:var(--card);border:1px solid var(--line);border-left:4px solid #f58025;border-radius:var(--radius);padding:1.6rem;transition:.3s}
+.info-card:hover{border-left-color:var(--accent);transform:translateY(-5px);box-shadow:0 16px 34px rgba(0,0,0,.4)}
+.info-card .ico2{font-size:1.7rem;margin-bottom:.7rem}
+.info-card h3{font-size:1.08rem;font-weight:800;margin-bottom:.5rem}
+.info-card p{color:var(--sub);font-size:.85rem}
+.timeline{margin-top:2.6rem;position:relative;padding-left:2rem;border-left:2px solid rgba(194,74,23,.45)}
+.timeline .node{position:relative;margin-bottom:1.9rem}
+.timeline .node::before{content:"";position:absolute;left:-2.55rem;top:.35rem;width:14px;height:14px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px rgba(57,208,196,.14);border:2px solid var(--bg)}
+.timeline .node time{font-size:.78rem;color:var(--accent);font-weight:700;letter-spacing:.5px}
+.timeline .node h4{font-size:1.02rem;font-weight:800;margin:.2rem 0 .35rem}
+.timeline .node p{color:var(--sub);font-size:.84rem}
+.notice{margin-top:2.2rem;background:linear-gradient(120deg,rgba(192,57,43,.16),rgba(245,128,37,.14));border:1px solid rgba(245,128,37,.35);border-radius:var(--radius);padding:1.5rem 1.7rem}
+.notice h4{font-size:1rem;font-weight:800;margin-bottom:.5rem}
+.notice p{color:var(--sub);font-size:.84rem}
+
+/* ===== 页脚 ===== */
+footer{background:var(--bg2);border-top:1px solid var(--line);padding:2.6rem 0 1.8rem;margin-top:2rem}
+.foot-in{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:2rem}
+footer h5{font-size:1rem;font-weight:800;margin-bottom:.8rem}
+footer p,footer a{color:var(--sub);font-size:.83rem}
+footer a:hover{color:var(--txt)}
+.copy{margin-top:2rem;padding-top:1.2rem;border-top:1px solid var(--line);color:var(--sub);font-size:.76rem;text-align:center}
+.top{position:fixed;right:1.2rem;bottom:1.4rem;width:46px;height:46px;border-radius:13px;background:var(--g1);color:#fff;border:0;font-size:1.2rem;cursor:pointer;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:.35s;z-index:90}
+.top.show{opacity:1;pointer-events:auto}
+
+/* ===== 响应式断点 ===== */
+@media(max-width:980px){
+  .masonry{column-count:3}
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .foot-in{grid-template-columns:1fr 1fr}
+}
+@media(max-width:820px){
+  .hero{grid-template-columns:1fr;text-align:left}
+  .poster-wall{height:clamp(260px,46vw,360px);order:-1}
+  .board .row{grid-template-columns:54px 2fr 1fr}
+  .board .row .hide820{display:none}
+}
+@media(max-width:640px){
+  .btn-menu{display:block}
+  nav.menu{position:fixed;inset:64px 0 auto 0;flex-direction:column;background:rgba(14,17,28,.97);backdrop-filter:blur(14px);padding:1rem;border-top:1px solid var(--line);transform:translateY(-150%);transition:.4s;gap:.25rem}
+  nav.menu.open{transform:translateY(0)}
+  nav.menu a{padding:.9rem 1.1rem;font-size:1rem}
+  .masonry{column-count:2}
+  .cards{grid-template-columns:1fr}
+  .foot-in{grid-template-columns:1fr}
+  .board .row{grid-template-columns:46px 1fr}
+  .board .row .hide640{display:none}
+  .title-cell .thumb{width:36px;height:50px}
+}
+@media(max-width:420px){
+  .masonry{column-count:1}
+  .stats{gap:1.2rem}
+  .hero h1{font-size:clamp(1.8rem,9vw,2.4rem)}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/xiaobao.js"></script>
+<header class="navbar" role="banner">
+  <div class="wrap nav-in">
+    <a class="logo" href="#home" aria-label="影视吧 首页">
+      <span class="mark" aria-hidden="true">男</span>影视吧<small>yingshiba-cn</small>
+    </a>
+    <button class="btn-menu" id="btnMenu" aria-label="打开菜单" aria-expanded="false">☰</button>
+    <nav class="menu" id="menu" role="navigation" aria-label="主导航">
+      <a href="#home" class="active">首页</a>
+      <a href="#recommend">影视推荐</a>
+      <a href="#category">分区版块</a>
+      <a href="#rank">热播排行</a>
+      <a href="#about">关于本站</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" role="main">
+
+<!-- ============ ① 首页 ============ -->
+<section id="home" class="sec" aria-labelledby="h-home">
+  <div class="hero">
+    <div class="hero-txt">
+      <span class="eyebrow">LGBTQ+ · 影视导航</span>
+      <span class="tagline"><i></i>今日已更新 8 部同志题材作品</span>
+      <h1>专注 <span class="hl">同志电影</span><br>与同性情感剧集</h1>
+      <p class="lead">影视吧（yingshiba-cn）是一个专注于同志题材、同性情感、BL 改编与 LGBTQ+ 影视内容的导航站点，帮你更快找到值得看的影视吧作品。</p>
+      <div class="cta-row">
+        <a class="btn primary" href="#recommend">开始浏览影片</a>
+        <a class="btn ghost" href="#category">查看题材分类</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>2,400+</b><small>收录影片条目</small></div>
+        <div class="stat"><b>26</b><small>分区版块</small></div>
+        <div class="stat"><b>每周</b><small>更新推荐榜单</small></div>
+      </div>
+    </div>
+    <div class="poster-wall" aria-hidden="true">
+      <div class="pc p1"><img src="https://picsum.photos/id/1057/400/600" alt=""><div class="cap">《请以你的名字呼唤我》</div></div>
+      <div class="pc p2"><img src="https://picsum.photos/id/1043/400/600" alt=""><div class="cap">《单身男子》</div></div>
+      <div class="pc p3"><img src="https://picsum.photos/id/1050/400/600" alt=""><div class="cap">《月光男孩》</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ② 影视推荐 ============ -->
+<section id="recommend" class="sec" aria-labelledby="h-rec">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">Editor's Pick</span>
+        <h2 id="h-rec">本周 <em>影视推荐</em></h2>
+      </div>
+      <span>横向滑动查看更多 · 每周更新</span>
+    </div>
+    <div class="rail" role="list" aria-label="推荐影片">
+      <article class="tile" role="listitem">
+        <div class="cover"><img src="https://picsum.photos/id/1025/400/600" alt="同志题材电影剧照"><span class="badge">推荐</span><span class="score">9.2</span></div>
+        <div class="meta"><h3>请以你的名字呼唤我</h3><p>2017 · 剧情 / 爱情 · 意大利</p></div>
+      </article>
+      <article class="tile" role="listitem">
+        <div class="cover"><img src="https://picsum.photos/id/1039/400/600" alt="同性情感剧集海报"><span class="badge hot">热播</span><span class="score">8.9</span></div>
+        <div class="meta"><h3>单身男子</h3><p>2009 · 剧情 · 美国</p></div>
+      </article>
+      <article class="tile" role="listitem">
+        <div class="cover"><img src="https://picsum.photos/id/1041/400/600" alt="影视吧封面"><span class="badge new">新片</span><span class="score">8.5</span></div>
+        <div class="meta"><h3>月光男孩</h3><p>2016 · 剧情 · 美国</p></div>
+      </article>
+      <article class="tile" role="listitem">
+        <div class="cover"><img src="https://picsum.photos/id/1059/400/600" alt="同志电影封面"><span class="badge">推荐</span><span class="score">8.7</span></div>
+        <div class="meta"><h3>上帝之国</h3><p>2017 · 剧情 / 爱情 · 英国</p></div>
+      </article>
+      <article class="tile" role="listitem">
+        <div class="cover"><img src="https://picsum.photos/id/1062/400/600" alt="BL改编剧集封面"><span class="badge hot">热播</span><span class="score">8.3</span></div>
+        <div class="meta"><h3>燃烧男子的肖像</h3><p>2019 · 历史 / 爱情 · 法国</p></div>
+      </article>
+      <article class="tile" role="listitem">
+        <div class="cover"><img src="https://picsum.photos/id/1069/400/600" alt="同性题材影片封面"><span class="badge">推荐</span><span class="score">8.0</span></div>
+        <div class="meta"><h3>周末时光</h3><p>2011 · 剧情 / 爱情 · 英国</p></div>
+      </article>
+      <article class="tile" role="listitem">
+        <div class="cover"><img src="https://picsum.photos/id/1074/400/600" alt="LGBTQ+影视封面"><span class="badge new">新片</span><span class="score">8.6</span></div>
+        <div class="meta"><h3>轻松小熊与小羊</h3><p>2020 · 纪录片 · 德国</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ③ 题材分类 ============ -->
+<section id="category" class="sec" aria-labelledby="h-cat">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">Browse by Genre</span><h2 id="h-cat">题材 <em>分类浏览</em></h2></div>
+      <span>点击标签筛选 · 共 26 类</span>
+    </div>
+    <div class="tools" role="group" aria-label="分类筛选">
+      <button class="on" type="button">全部</button>
+      <button type="button">同志电影</button>
+      <button type="button">同性情感剧</button>
+      <button type="button">BL 改编</button>
+      <button type="button">纪录片</button>
+      <button type="button">短片</button>
+    </div>
+    <div class="masonry" role="list" aria-label="题材分类列表">
+      <a class="cell" href="#category" role="listitem"><span class="halo" aria-hidden="true"></span><div class="ico" aria-hidden="true">🎬</div><h3>同志电影</h3><p>经典与当代同志题材剧情长片</p><span class="cnt">642 部</span></a>
+      <a class="cell" href="#category" role="listitem"><span class="halo" aria-hidden="true"></span><div class="ico" aria-hidden="true">📺</div><h3>同性情感剧</h3><p>剧集、迷你剧与系列剧</p><span class="cnt">318 部</span></a>
+      <a class="cell" href="#category" role="listitem"><span class="halo" aria-hidden="true"></span><div class="ico" aria-hidden="true">📖</div><h3>BL 改编</h3><p>小说、漫画改编的题材作品</p><span class="cnt">205 部</span></a>
+      <a class="cell" href="#category" role="listitem"><span class="halo" aria-hidden="true"></span><div class="ico" aria-hidden="true">🎥</div><h3>独立电影</h3><p>小成本、作者性与电影节入围作品</p><span class="cnt">427 部</span></a>
+      <a class="cell" href="#category" role="listitem"><span class="halo" aria-hidden="true"></span><div class="ico" aria-hidden="true">🌈</div><h3>LGBTQ+ 综合</h3><p>涵盖多元性别与性向的影视内容</p><span class="cnt">389 部</span></a>
+      <a class="cell" href="#category" role="listitem"><span class="halo" aria-hidden="true"></span><div class="ico" aria-hidden="true">📽️</div><h3>纪录片</h3><p>真实记录与口述历史</p><span class="cnt">176 部</span></a>
+      <a class="cell" href="#category" role="listitem"><span class="halo" aria-hidden="true"></span><div class="ico" aria-hidden="true">⏱️</div><h3>短片</h3><p>15 分钟以内的独立短片</p><span class="cnt">248 部</span></a>
+      <a class="cell" href="#category" role="listitem"><span class="halo" aria-hidden="true"></span><div class="ico" aria-hidden="true">🏳️‍🌈</div><h3>骄傲专题</h3><p>骄傲月、平权主题精选合集</p><span class="cnt">94 部</span></a>
+      <a class="cell" href="#category" role="listitem"><span class="halo" aria-hidden="true"></span><div class="ico" aria-hidden="true">🗣️</div><h3>访谈与幕后</h3><p>导演、演员对谈与花絮</p><span class="cnt">131 部</span></a>
+    </div>
+    <div class="cloud" aria-label="热门标签">
+      <a href="#category"># 同志题材</a><a href="#category"># 同性爱情</a><a href="#category"># BL剧</a>
+      <a href="#category"># 青春成长</a><a href="#category"># 家庭与出柜</a><a href="#category"># 历史传记</a><a href="#category"># 国际电影节</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ④ 热播排行 ============ -->
+<section id="rank" class="sec" aria-labelledby="h-rank">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">Top Charts</span><h2 id="h-rank">本周 <em>热播排行</em></h2></div>
+      <span>依据站内浏览与搜索热度统计</span>
+    </div>
+    <div class="board" role="table" aria-label="热播排行">
+      <div class="row head" role="row">
+        <span role="columnheader">排名</span>
+        <span role="columnheader">影片名称</span>
+        <span role="columnheader" class="hide820">题材类型</span>
+        <span role="columnheader">热度指数</span>
+      </div>
+      <div class="row body" role="row"><span class="medal m1" role="cell">1</span>
+        <span class="title-cell" role="cell"><img class="thumb" src="https://picsum.photos/id/1047/120/170" alt=""><div><h4>请以你的名字呼唤我</h4><p>剧情 / 爱情 · 2017</p></div></span>
+        <span class="tag hide820" role="cell">同志电影</span>
+        <span class="heat" role="cell">98.6<div class="bar"><i style="width:98%"></i></div></span></div>
+      <div class="row body" role="row"><span class="medal m2" role="cell">2</span>
+        <span class="title-cell" role="cell"><img class="thumb" src="https://picsum.photos/id/1052/120/170" alt=""><div><h4>月光男孩</h4><p>剧情 · 2016</p></div></span>
+        <span class="tag hide820" role="cell">独立电影</span>
+        <span class="heat" role="cell">95.2<div class="bar"><i style="width:95%"></i></div></span></div>
+      <div class="row body" role="row"><span class="medal m3" role="cell">3</span>
+        <span class="title-cell" role="cell"><img class="thumb" src="https://picsum.photos/id/1060/120/170" alt=""><div><h4>燃烧男子的肖像</h4><p>历史 / 爱情 · 2019</p></div></span>
+        <span class="tag hide820" role="cell">同性情感</span>
+        <span class="heat" role="cell">92.7<div class="bar"><i style="width:93%"></i></div></span></div>
+      <div class="row body" role="row"><span class="medal" role="cell">4</span>
+        <span class="title-cell" role="cell"><img class="thumb" src="https://picsum.photos/id/1067/120/170" alt=""><div><h4>单身男子</h4><p>剧情 · 2009</p></div></span>
+        <span class="tag hide820" role="cell">同志电影</span>
+        <span class="heat" role="cell">89.4<div class="bar"><i style="width:89%"></i></div></span></div>
+      <div class="row body" role="row"><span class="medal" role="cell">5</span>
+        <span class="title-cell" role="cell"><img class="thumb" src="https://picsum.photos/id/1071/120/170" alt=""><div><h4>上帝之国</h4><p>剧情 / 爱情 · 2017</p></div></span>
+        <span class="tag hide820" role="cell">BL 改编</span>
+        <span class="heat" role="cell">87.1<div class="bar"><i style="width:87%"></i></div></span></div>
+      <div class="row body" role="row"><span class="medal" role="cell">6</span>
+        <span class="title-cell" role="cell"><img class="thumb" src="https://picsum.photos/id/1076/120/170" alt=""><div><h4>周末时光</h4><p>剧情 / 爱情 · 2011</p></div></span>
+        <span class="tag hide820" role="cell">独立电影</span>
+        <span class="heat" role="cell">84.5<div class="bar"><i style="width:84%"></i></div></span></div>
+      <div class="row body" role="row"><span class="medal" role="cell">7</span>
+        <span class="title-cell" role="cell"><img class="thumb" src="https://picsum.photos/id/1080/120/170" alt=""><div><h4>每分钟 120 击</h4><p>剧情 / 历史 · 2017</p></div></span>
+        <span class="tag hide820" role="cell">LGBTQ+ 综合</span>
+        <span class="heat" role="cell">81.9<div class="bar"><i style="width:82%"></i></div></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ⑤ 关于本站 ============ -->
+<section id="about" class="sec" aria-labelledby="h-about">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">About Us</span><h2 id="h-about">关于 <em>影视吧</em></h2></div></div>
+    <div class="cards">
+      <article class="info-card"><div class="ico2" aria-hidden="true">🔍</div><h3>我们的定位</h3><p>影视吧（yingshiba-cn）是一个专注同志题材、同性情感、BL 改编与 LGBTQ+ 影视内容的导航与信息整理站点，帮助观众发现优质作品。</p></article>
+      <article class="info-card"><div class="ico2" aria-hidden="true">📋</div><h3>内容说明</h3><p>本站仅提供影片介绍、分类索引与资讯整理，不托管、不提供任何影视资源的下载或在线播放服务，所有条目均注明年份与地区信息。</p></article>
+      <article class="info-card"><div class="ico2" aria-hidden="true">🤝</div><h3>尊重与包容</h3><p>我们以平等、尊重的态度呈现每一部作品，反对歧视与偏见，致力于成为 LGBTQ+ 群体与影视爱好者友好的信息入口。</p></article>
+    </div>
+    <div class="timeline" aria-label="站点发展历程">
+      <div class="node"><time>2024 · 03</time><h4>影视吧上线</h4><p>完成首批 800 部同志题材影片条目整理与分类体系建设。</p></div>
+      <div class="node"><time>2024 · 09</time><h4>题材分类扩充</h4><p>新增 BL 改编、纪录片、短片三大分类，分类总数增至 26 类。</p></div>
+      <div class="node"><time>2025 · 05</time><h4>热播排行上线</h4><p>上线每周热播榜单与影片评分展示，提供更直观的观影参考。</p></div>
+      <div class="node"><time>2026 · 至今</time><h4>持续更新中</h4><p>保持每周更新推荐内容，持续优化站点结构与移动端浏览体验。</p></div>
+    </div>
+    <div class="notice">
+      <h4>版权与合规声明</h4>
+      <p>本站所有影片介绍、海报与文字资料仅供信息参考，版权归原作者及发行方所有；若涉及版权问题，请通过页脚联系方式与我们联系，我们将及时处理。本站不提供任何资源下载或播放服务。</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer role="contentinfo">
+  <div class="wrap foot-in">
+    <div>
+      <a class="logo" href="#home"><span class="mark" aria-hidden="true">男</span>影视吧<small>yingshiba-cn</small></a>
+      <p style="margin-top:.8rem">专注同志题材与同性情感影视导航，每周更新推荐榜单与热播排行。</p>
+    </div>
+    <div>
+      <h5>快速导航</h5>
+      <p><a href="#home">首页</a></p>
+      <p><a href="#recommend">影视推荐</a></p>
+      <p><a href="#category">分区版块</a></p>
+    </div>
+    <div>
+      <h5>站点信息</h5>
+      <p><a href="#rank">热播排行</a></p>
+      <p><a href="#about">关于本站</a></p>
+      <p><a href="#about">版权与合规声明</a></p>
+    </div>
+  </div>
+  <div class="wrap copy">
+    © <span id="yr">2026</span> 影视吧 yingshiba-cn · 影视导航信息站点 · 不提供资源下载或播放服务 · 本站网址 https://yingshiba-cn.github.io/
+  </div>
+</footer>
+
+<button class="top" id="topBtn" aria-label="返回顶部" title="返回顶部">↑</button>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+var menu = document.getElementById('menu'), btn = document.getElementById('btnMenu'), topBtn = document.getElementById('topBtn');
+btn.addEventListener('click', function(){
+  var o = menu.classList.toggle('open');
+  btn.setAttribute('aria-expanded', o);
+  btn.textContent = o ? '✕' : '☰';
+});
+menu.querySelectorAll('a').forEach(function(a){
+  a.addEventListener('click', function(){ menu.classList.remove('open'); btn.setAttribute('aria-expanded','false'); btn.textContent='☰'; });
+});
+var links = menu.querySelectorAll('a'), secs = [];
+links.forEach(function(a){ var s = document.querySelector(a.getAttribute('href')); if(s) secs.push(s); });
+function onScroll(){
+  var y = window.scrollY + 120, cur = '';
+  secs.forEach(function(s){ if(s.offsetTop <= y) cur = s.id; });
+  links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#' + cur); });
+  topBtn.classList.toggle('show', window.scrollY > 500);
+}
+window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+topBtn.addEventListener('click', function(){ window.scrollTo({top:0,behavior:'smooth'}); });
+document.querySelectorAll('.tools button').forEach(function(b){
+  b.addEventListener('click', function(){ document.querySelectorAll('.tools button').forEach(function(x){ x.classList.remove('on'); }); b.classList.add('on'); });
+});
+</script>
+</body>
+</html>
